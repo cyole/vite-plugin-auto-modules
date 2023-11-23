@@ -1,0 +1,92 @@
+{
+  "name": "vite-plugin-auto-modules",
+  "type": "module",
+  "version": "0.0.4",
+  "packageManager": "pnpm@8.10.5",
+  "description": "Automatically use modules from a folder",
+  "author": "Cyole <hi@cyoo.cn>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/cyole",
+  "homepage": "https://github.com/cyole/vite-plugin-auto-modules#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyole/vite-plugin-auto-modules.git"
+  },
+  "bugs": "https://github.com/cyole/vite-plugin-auto-modules/issues",
+  "keywords": [
+    "vite",
+    "vue",
+    "modules",
+    "auto",
+    "auto-modules"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./client": {
+      "types": "./client.d.ts"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "client.d.ts",
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "example": "pnpm -C example dev",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks",
+    "up": "taze major -I -r"
+  },
+  "peerDependencies": {
+    "vite": "^4.0.0",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.1.0",
+    "@antfu/ni": "^0.21.10",
+    "@antfu/utils": "^0.7.6",
+    "@types/node": "^20.9.4",
+    "bumpp": "^9.2.0",
+    "eslint": "^8.54.0",
+    "esno": "^4.0.0",
+    "lint-staged": "^15.1.0",
+    "pnpm": "^8.10.5",
+    "rimraf": "^5.0.5",
+    "simple-git-hooks": "^2.9.0",
+    "taze": "^0.12.0",
+    "typescript": "^5.3.2",
+    "unbuild": "^2.0.0",
+    "vite": "^5.0.2",
+    "vitest": "^1.0.0-beta.5",
+    "vue": "^3.3.8"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
